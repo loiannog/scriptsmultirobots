@@ -40,5 +40,6 @@ done
 sleep 4
 
 tmux select-window -t $SESSION_NAME:1
+tmux -2 attach-session -t $SESSION_NAME
 
 clear
