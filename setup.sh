@@ -14,7 +14,7 @@ fi
 tmux source-file setup.conf
 
 # create arrays of names and commands
-VEHICLE_NUMBER=2
+VEHICLE_NUMBER=8
 for ((i=0; i < ${VEHICLE_NUMBER}; i++));
 do
   VEHICLE_COMMAND[$i]="ssh -t dragonfly$((i+1))@dragonfly$((i+1)) sudo ./scriptsmultirobots/run_robot.sh"
