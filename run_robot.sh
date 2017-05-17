@@ -13,7 +13,7 @@ fi
 
 # define commands
 # 'name' 'command'
-input=("$USER" 'sudo stop snav; sleep 2; sudo start snav; sleep 2; sudo date --set="2017-03-03 23:31:59.990"; roslaunch state_control_vehicle state_control.launch')
+input=("$USER" 'sudo stop snav; sleep 2; sudo start snav; sleep 2; roslaunch state_control_vehicle state_control.launch')
 
 # create arrays of names and commands
 for ((i=0; i < ${#input[*]}; i++));
