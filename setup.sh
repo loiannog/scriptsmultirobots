@@ -17,7 +17,7 @@ tmux source-file setup.conf
 VEHICLE_NUMBER=8
 for ((i=0; i < ${VEHICLE_NUMBER}; i++));
 do
-  VEHICLE_COMMAND[$i]="ssh -t dragonfly$((i+1))@dragonfly$((i+1)) sudo ./scriptsmultirobots/run_robot.sh"
+ VEHICLE_COMMAND[$i]="ssh -t dragonfly$((i+1))@dragonfly$((i+1)) sudo ./scriptsmultirobots/run_robot.sh"
  for ((j=2*i; j < 2*i+1; j++));
   do
   input[$j]="uav${i}"
