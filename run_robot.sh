@@ -1,7 +1,6 @@
 #!/bin/bash
 
-#UAV_NAME=$1
-UAV_NAME="QuadrotorQc11"
+UAV_NAME=$1
 
 echo "uav name is ${UAV_NAME}"
 
