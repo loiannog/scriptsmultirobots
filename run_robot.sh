@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SESSION_NAME=$USER
-UAV_NAME=$SESSION_NAME
+UAV_NAME=$1
 
 if [ -z ${TMUX} ];
 then
@@ -11,9 +11,11 @@ else
   SESSION_NAME="$(tmux display-message -p '#S')"
 fi
 
+echo ${UAV_NAME}
+
 # define commands
 # 'name' 'command'
-input=("$USER" 'sudo stop snav; sleep 2; sudo start snav; sleep 2; roslaunch state_control_vehicle state_control.launch')
+input=("$USER" "sudo stop snav; sleep 2; sudo start snav; sleep 2; roslaunch state_control_vehicle mav_manager_vio_qc.launch model:=${UAV_NAME}")
 
 # create arrays of names and commands
 for ((i=0; i < ${#input[*]}; i++));
