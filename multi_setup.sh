@@ -3,8 +3,7 @@
 SESSION_NAME=dragonfly_multi_robot
 UAV_NAME=$SESSION_NAME
 
-declare -a ROBOTS=("dragonfly10"
-                  "dragonfly11"
+declare -a ROBOTS=("dragonfly11"
                   )
 
 if [ -z ${TMUX} ];
@@ -23,11 +22,10 @@ robot_indices=${!ROBOTS[*]}
 for i in $robot_indices;
 do
   robot_i=${ROBOTS[$i]}
-  VEHICLE_COMMAND="ssh -t $robot_i@$robot_i sudo ./scriptsmultirobots/run_robot.sh ${robot_i}"
-  VEHICLE_COMMAND="./scriptsmultirobots/run_robot.sh ${robot_i}"
+  VEHICLE_COMMAND="ssh -t $robot_i@$robot_i sudo ./run_robot.sh ${robot_i}"
 
   tmux new-window -t ${SESSION_NAME}:$(($i+10)) -n ${ROBOTS[$i]}
-  tmux send-keys -t ${SESSION_NAME}:$i "${VEHICLE_COMMAND}" C-m
+  tmux send-keys -t ${SESSION_NAME}:$(($i+10)) "${VEHICLE_COMMAND}" C-m
 done
 
 sleep 1
