@@ -3,8 +3,8 @@
 SESSION_NAME=dragonfly_multi_robot
 UAV_NAME=$SESSION_NAME
 
-declare -a ROBOTS=("dragonfly10" "dragonfly11" "dragonfly13")
-#declare -a ROBOTS=("dragonfly13")
+#declare -a ROBOTS=("dragonfly10" "dragonfly11" "dragonfly13")
+declare -a ROBOTS=("dragonfly13")
 
 if [ -z ${TMUX} ];
 then
@@ -25,7 +25,10 @@ do
   robot_i=${ROBOTS[$i]}
 
   tmux new-window -t ${SESSION_NAME}:$(($i+10)) -n $robot_i
-  tmux send-keys "ssh -t ${robot_i}@$robot_i ./scriptsmultirobots/run_robot.sh $robot_i" C-m
+  tmux send-keys "ssh -t ${robot_i}@$robot_i" C-m
+  tmux send-keys "cd ~/scriptsmultirobots/" C-m
+  tmux send-keys "git pull" C-m
+  tmux send-keys "~/scriptsmultirobots/run_robot.sh $robot_i" C-m
   sleep 5
 done
 
