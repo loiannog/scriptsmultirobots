@@ -3,8 +3,8 @@
 SESSION_NAME=dragonfly_multi_robot
 UAV_NAME=$SESSION_NAME
 
-#declare -a ROBOTS=("dragonfly10" "dragonfly11" "dragonfly13")
-declare -a ROBOTS=("dragonfly13")
+declare -a ROBOTS=("dragonfly10" "dragonfly11" "dragonfly13")
+#declare -a ROBOTS=("dragonfly13")
 
 if [ -z ${TMUX} ];
 then
@@ -15,8 +15,6 @@ else
 fi
 
 tmux source-file setup.conf
-tmux new-window -t ${SESSION_NAME}:1 -n "multi_mav_manager"
-
 sleep 1
 
 robot_indices=${!ROBOTS[*]}
@@ -26,16 +24,31 @@ do
 
   tmux new-window -t ${SESSION_NAME}:$(($i+10)) -n $robot_i
   tmux send-keys "ssh -t ${robot_i}@$robot_i" C-m
-  tmux send-keys "cd ~/scriptsmultirobots/" C-m
-  tmux send-keys "git pull" C-m
+  tmux split-window -h
+  tmux send-keys "ssh -t ${robot_i}@$robot_i" C-m
   tmux send-keys "~/scriptsmultirobots/run_robot.sh $robot_i" C-m
-  sleep 5
+  tmux select-pane -t 0
 done
 
 sleep 1
 
-tmux select-window -t $SESSION_NAME:1
-tmux send-keys -t ${SESSION_NAME}:1 "roslaunch multi_mav_manager multi_dragonfly.launch" Enter
-tmux -2 attach-session -t $SESSION_NAME
+tmux new-window -t $SESSION_NAME:2 -n "Multi Mav Manager"
+tmux send-keys "roslaunch multi_mav_manager multi_dragonfly.launch" C-m
 
+tmux select-window -t $SESSION_NAME:1
+tmux rename-window -t $SESSION_NAME:1 -n "Command Central"
+tmux send-keys "source aliases.sh" C-m
+
+tmux split-window -h
+tmux send-keys "source aliases.sh" C-m
+tmux send-keys "kill"
+
+tmux select-pane -t 0
+tmux split-window -v
+tmux send-keys "source aliases.sh" C-m
+tmux send-keys "estop"
+
+tmux select-pane -t 0
+
+tmux -2 attach-session -t $SESSION_NAME
 clear

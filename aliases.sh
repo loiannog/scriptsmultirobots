@@ -16,3 +16,5 @@ alias stop='land && sleep 1 && motors false'
 
 echo "loaded aliases for /multi_mav_services/"
 echo "motors, takeoff, land, hover, eland, estop, goTo, line, line1, circle"
+
+alias kill='tmux kill-session'
