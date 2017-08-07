@@ -3,8 +3,8 @@
 SESSION_NAME=dragonfly_multi_robot
 UAV_NAME=$SESSION_NAME
 
-declare -a ROBOTS=("dragonfly10" "dragonfly11" "dragonfly13")
-#declare -a ROBOTS=("dragonfly13")
+declare -a ROBOTS=("dragonfly8" "dragonfly10" "dragonfly11" "dragonfly13")
+#declare -a ROBOTS=("dragonfly8" "dragonfly10")
 
 if [ -z ${TMUX} ];
 then
@@ -30,7 +30,7 @@ do
   tmux select-pane -t 0
 done
 
-sleep 1
+sleep 5
 
 tmux new-window -t $SESSION_NAME:2 -n "Multi Mav Manager"
 tmux send-keys "roslaunch multi_mav_manager multi_dragonfly.launch" C-m
