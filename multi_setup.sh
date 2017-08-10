@@ -3,8 +3,8 @@
 SESSION_NAME=dragonfly_multi_robot
 UAV_NAME=$SESSION_NAME
 
-declare -a ROBOTS=("dragonfly8" "dragonfly10" "dragonfly11" "dragonfly13")
-#declare -a ROBOTS=("dragonfly8" "dragonfly10")
+#declare -a ROBOTS=("dragonfly8" "dragonfly10" "dragonfly11" "dragonfly13")
+declare -a ROBOTS=("dragonfly3" "dragonfly4")
 
 if [ -z ${TMUX} ];
 then

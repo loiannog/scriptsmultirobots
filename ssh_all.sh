@@ -23,6 +23,7 @@ do
   robot_i=${ROBOTS[$i]}
 
   tmux new-window -t ${SESSION_NAME}:$(($i+10)) -n $robot_i
+  tmux select-window -t ${SESSION_NAME}:$((i+10))
   tmux send-keys "ssh -t ${robot_i}@$robot_i" C-m
 done
 
