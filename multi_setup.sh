@@ -3,13 +3,16 @@
 SESSION_NAME=dragonfly_multi_robot
 UAV_NAME=$SESSION_NAME
 
-declare -a ROBOTS=( "dragonfly3" 
+declare -a ROBOTS=( "dragonfly1" 
+                    "dragonfly2"
+                    "dragonfly3"
                     "dragonfly4"
+                    "dragonfly6" 
+                    "dragonfly7" 
                     "dragonfly8" 
                     "dragonfly10" 
-                    "dragonfly11" 
-                    "dragonfly13")
-#declare -a ROBOTS=("dragonfly3" "dragonfly4")
+                    "dragonfly11" )
+#declare -a ROBOTS=("dragonfly5")
 
 if [ -z ${TMUX} ];
 then
@@ -31,7 +34,7 @@ do
   tmux send-keys "ssh -t ${robot_i}@$robot_i" C-m
   tmux split-window -h
   tmux send-keys "ssh -t ${robot_i}@$robot_i" C-m
-  tmux send-keys "~/scriptsmultirobots/run_robot.sh $robot_i" C-m
+  tmux send-keys "sudo ~/scriptsmultirobots/run_robot.sh $robot_i" C-m
   tmux select-pane -t 0
 done
 

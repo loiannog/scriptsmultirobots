@@ -1,0 +1,102 @@
+# These are instructions of how to set up a new dragonfly to run the multi robot demo
+
+###########################################################################
+## SSH in to Robot
+###########################################################################
+
+## SSH in to robot
+ssh-copy-id dragonflyXX@dragonflyXX
+pw: linaro
+ssh dragonflyXX@dragonflyXX
+sudo -s
+
+###########################################################################
+## Install Repos
+###########################################################################
+
+## Install scriptsmultirobots
+cd ~/
+git clone https://github.com/loiannog/scriptsmultirobots.git
+cd scriptsmultirobots
+git pull
+git checkout aaron_formation
+
+## Quadrotor Control
+cd ~/catkin_ws/src/quadrotor_control
+git clone https://github.com/KumarRobotics/quadrotor_control.git
+git pull
+git checkout multi_qc_dragonfly
+git submodule init
+git submodule update
+
+## Install master_discovery_fkie
+sudo apt-get install ros-indigo-master-discovery-fkie
+
+## Install quadrotor_ukf
+git clone https://github.com/loiannog/quadrotor_ukf.git
+
+## Install state_control_vehicle
+git clone https://github.com/loiannog/state_control_vehicle.git
+git pull
+git checkout aaron_formation
+cd state_control_vehicle/config
+vim ~/catkin_ws/src/state_control_vehicle/config/server_multimaster.yaml
+
+sync_topics: ['/dragonflyXX/odom']
+ignore_nodes: ['/rviz']
+ignore_services: ['']
+
+## Install vio_qc
+git clone https://github.com/loiannog/vio_qc.git
+cd ~/catkin_ws/src/vio_qc
+git checkout version_10_0
+git pull
+
+## Compile ros stuff
+cd ~/catkin_ws
+catkin_make
+#This takes a long time
+
+###########################################################################
+## Stuff on my computer
+###########################################################################
+
+## Add robot to multi_mav_manager config
+vim ~/catkin_ws/src/multi_mav_manager/config/dragonfly/multi_mav_manager.yaml
+#Add robot to file
+
+## Add robot to multimaster server
+vim ~/catkin_ws/src/multi_mav_manager/config/dragonfly/server_multimaster.yaml
+
+Sync all topics from robot
+
+## Add robot to ssh scripts
+vim ~/catkin_ws/src/scriptsmultirobots/multi_setup.sh
+#Add robot to file
+vim ~/catkin_ws/src/scriptsmultirobots/ssh_all.sh
+
+## Reset ipfirewall on my computer for chrony to work
+sudo iptables -F
+
+###########################################################################
+## Network Stuff
+###########################################################################
+
+# Go back to the robot
+
+## Set up chrony
+sudo apt-get install chrony
+rm /etc/chrony/chrony.conf
+# From my computer
+scp ~/catkin_ws/src/scriptsmultirobots/chrony.conf dragonflyXX@dragonflyXX:~/
+# Back to robot
+mv ~/chrony.conf /etc/chrony/chrony.conf
+
+## Configure wifi
+vim /etc/wpa_supplicant/wpa_supplicant.conf
+add mrsl_mast network
+wpa_cli
+status
+reconfigure
+
+

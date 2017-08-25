@@ -3,7 +3,15 @@
 SESSION_NAME=ssh_all_dragonfly
 UAV_NAME=$SESSION_NAME
 
-declare -a ROBOTS=("dragonfly8" "dragonfly10" "dragonfly11" "dragonfly13")
+declare -a ROBOTS=( "dragonfly1" 
+                    "dragonfly2" 
+                    "dragonfly3" 
+                    "dragonfly4" 
+                    "dragonfly6" 
+                    "dragonfly7" 
+                    "dragonfly8" 
+                    "dragonfly10" 
+                    "dragonfly11")
 #declare -a ROBOTS=("dragonfly8" "dragonfly10")
 
 if [ -z ${TMUX} ];
@@ -24,7 +32,7 @@ do
 
   tmux new-window -t ${SESSION_NAME}:$(($i+10)) -n $robot_i
   tmux select-window -t ${SESSION_NAME}:$((i+10))
-  tmux send-keys "ssh -t ${robot_i}@$robot_i" C-m
+  tmux send-keys "ssh ${robot_i}@$robot_i" C-m
 done
 
 sleep 5
