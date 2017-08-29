@@ -7,12 +7,15 @@ declare -a ROBOTS=( "dragonfly1"
                     "dragonfly2" 
                     "dragonfly3" 
                     "dragonfly4" 
+                    "dragonfly5" 
                     "dragonfly6" 
                     "dragonfly7" 
                     "dragonfly8" 
                     "dragonfly10" 
-                    "dragonfly11")
-#declare -a ROBOTS=("dragonfly8" "dragonfly10")
+                    "dragonfly11" 
+                    "dragonfly13" 
+                    "dragonfly14")
+#declare -a ROBOTS=("dragonfly5" "dragonfly13" "dragonfly14")
 
 if [ -z ${TMUX} ];
 then

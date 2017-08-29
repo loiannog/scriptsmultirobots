@@ -1,5 +1,0 @@
-this is a test in the scripts submodule
-
-part 2
-
-part 222332
