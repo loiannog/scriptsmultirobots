@@ -27,11 +27,11 @@ rosservice call /multi_mav_services/goFormCircle "{roll: 0.0, pitch: 0.0, yaw: 0
 sleep 1
 
 read -p "Press [Enter] to expand circle"
-rosservice call /multi_mav_services/goFormCircle "{roll: 0.0, pitch: 0.0, yaw: 0.0, center: [0.0, 0.0, 1.0], spacing: 2.5}"
+rosservice call /multi_mav_services/goFormCircle "{roll: 0.0, pitch: 0.0, yaw: 0.0, center: [0.0, 0.0, 1.0], spacing: 2.0}"
 sleep 1
 
 read -p "Press [Enter] to move circle forward 2m"
-rosservice call /multi_mav_services/goFormCircle "{roll: 0.0, pitch: 0.3, yaw: 0.0, center: [3.0, 0.0, 3.0], spacing: $SPACING}"
+rosservice call /multi_mav_services/goFormCircle "{roll: 0.0, pitch: 0.3, yaw: 0.0, center: [3.0, 0.0, 2.5], spacing: $SPACING}"
 sleep 1
 
 read -p "Press [Enter] to change to rectangle and come back"
@@ -39,19 +39,15 @@ rosservice call /multi_mav_services/goFormRect "{roll: 0.0, pitch: -0.3, yaw: 0.
 sleep 1
 
 read -p "Press [Enter] to change to line"
-rosservice call /multi_mav_services/goFormLine "{roll: 0.0, pitch: 0.1, yaw: 0.5, center: [0.0, 0.0, 2.5], spacing: $SPACING}"
-sleep 1
-
-read -p "Press [Enter] to change to line"
-rosservice call /multi_mav_services/goFormLine "{roll: 0.0, pitch: 0.1, yaw: -0.5, center: [0.0, 0.0, 3.5], spacing: $SPACING}"
+rosservice call /multi_mav_services/goFormLine "{roll: 0.0, pitch: 0.1, yaw: 0.5, center: [0.0, 0.0, 2.0], spacing: $SPACING}"
 sleep 1
 
 read -p "Press [Enter] to form circle"
-rosservice call /multi_mav_services/goFormCircle "{roll: 0.0, pitch: 0.0, yaw: 0.0, center: [0.0, 0.0, 3.5], spacing: $SPACING}"
+rosservice call /multi_mav_services/goFormCircle "{roll: 0.0, pitch: 0.0, yaw: 0.0, center: [-4.0, 0.0, 1.0], spacing: $SPACING}"
 sleep 1
 
 read -p "Press [Enter] to form rectangle close to start pos"
-rosservice call /multi_mav_services/goFormRect "{roll: 0.0, pitch: 0.0, yaw: 0.0, center: [-1.5, 0.0, 1.0], spacing: 1.5}"
+rosservice call /multi_mav_services/goFormRect "{roll: 0.0, pitch: 0.0, yaw: 0.0, center: [-2.25, 0.0, 1.0], spacing: 1.5}"
 sleep 1
 
 read -p "Press [Enter] to land"

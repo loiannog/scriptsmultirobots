@@ -3,19 +3,19 @@
 SESSION_NAME=dragonfly_multi_robot
 UAV_NAME=$SESSION_NAME
 
-#declare -a ROBOTS=( "dragonfly1" 
-#                    "dragonfly2"
-#                    "dragonfly3"
-#                    "dragonfly4"
-#                    "dragonfly5"
-#                    "dragonfly6" 
-#                    "dragonfly7" 
-#                    "dragonfly8" 
-#                    "dragonfly10" 
-#                    "dragonfly11" 
-#                    "dragonfly13" 
-#                    "dragonfly14" )
-declare -a ROBOTS=("dragonfly13")
+declare -a ROBOTS=( "dragonfly1" 
+                    "dragonfly2"
+                    "dragonfly3"
+                    "dragonfly4"
+                    "dragonfly5"
+                    "dragonfly6" 
+                    "dragonfly7" 
+                    "dragonfly8" 
+                    "dragonfly10" 
+                    "dragonfly11" 
+                    "dragonfly13" 
+                    "dragonfly14" )
+#declare -a ROBOTS=("dragonfly13")
 
 if [ -z ${TMUX} ];
 then
@@ -43,8 +43,7 @@ sleep 5
 tmux new-window -t $SESSION_NAME:3 -n "Multi Mav Manager"
 tmux send-keys "roslaunch multi_mav_manager multi_dragonfly.launch" C-m
 
-tmux select-window -t $SESSION_NAME:2
-tmux rename-window -t $SESSION_NAME:2 -n "Command Central"
+tmux select-window -t $SESSION_NAME:1
 tmux send-keys "source aliases.sh" C-m
 tmux send-keys "./df_demo.sh"
 
