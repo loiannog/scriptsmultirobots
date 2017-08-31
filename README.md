@@ -22,3 +22,4 @@ Bash script run on Ground Station to shut down all robots
 
 ## setup.conf
 Sets a few settings for the tmux session on the Ground Station
+# dragonfly_scripts
