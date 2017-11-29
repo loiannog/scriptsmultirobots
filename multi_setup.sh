@@ -35,6 +35,7 @@ do
   tmux send-keys "ssh -t ${robot_i}@$robot_i" C-m
   tmux send-keys "sudo ~/scriptsmultirobots/run_robot.sh $robot_i" C-m
   tmux select-layout tiled
+  sleep 1
 done
 
 tmux kill-pane -t 0

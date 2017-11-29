@@ -33,6 +33,7 @@ _*.pyc
 
 # ROS BAG FILES
 *.bag
+*.bag.active
 
 # XCODE BUILD PRODUCTS
 *.build/

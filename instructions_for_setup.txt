@@ -1,4 +1,4 @@
-# These are instructions of how to set up a new dragonfly to run the multi robot demo
+# These are instructions of how to set up a new robot to run the multi robot demo
 
 ###########################################################################
 ## SSH in to Robot
@@ -67,8 +67,7 @@ vim ~/catkin_ws/src/multi_mav_manager/config/dragonfly/multi_mav_manager.yaml
 
 ## Add robot to multimaster server
 vim ~/catkin_ws/src/multi_mav_manager/config/dragonfly/server_multimaster.yaml
-
-Sync all topics from robot
+#Sync all topics from robot
 
 ## Add robot to ssh scripts
 vim ~/catkin_ws/src/scriptsmultirobots/multi_setup.sh
